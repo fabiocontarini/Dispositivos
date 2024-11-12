@@ -1,0 +1,38 @@
+﻿@model List<DispositivoEletronico>
+
+<h1>Lista de Dispositivos eletrônicos</h1>
+
+
+<table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Ano de fabricação</th>
+        <th>Detalhes</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach(var dispositivos in Model)
+        {
+            <tr>
+                <td>@dispositivos.Marca</td>
+                <td>@dispositivos.AnoDeFabricacao</td>
+                <td>@dispositivos.Modelo</td>
+
+                <td>
+                    @if (dispositivos is Computador)
+                    {
+                       <strong>RAM: </strong> @(((Computador)dispositivos).MemoriaRam)<br/>
+                       <strong>Tipo: </strong> @(((Computador)dispositivos).Ehlaptop ? "Laptop" : "desktop")
+                    }
+                    else if (dispositivos is Smarthphone)
+                        {
+                            <strong>5G:</strong> @(((Smarthphone)dispositivos).Tem5G ? "Sim" : "Não")
+                        }
+                    };
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
